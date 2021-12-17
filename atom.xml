@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-12-17T05:35:25.189Z</updated>
+  <updated>2021-12-17T07:53:09.903Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2021/12/17/1_git%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/"/>
     <id>http://example.com/2021/12/17/1_git%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</id>
     <published>2021-12-17T03:41:59.980Z</published>
-    <updated>2021-12-17T05:35:25.189Z</updated>
+    <updated>2021-12-17T07:53:09.903Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git相关操作"><a href="#Git相关操作" class="headerlink" title="Git相关操作"></a>Git相关操作</h2><p>1.<code>clone</code> 仓库</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:Annoy0514/test.git // ssh的地址</span><br></pre></td></tr></table></figure><p>2.查看仓库状态,检查远程仓库跟本地仓库内容是否一致。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure><p>3.本地仓库添加新内容。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add 添加的文件名 // 将文件添加到【临时缓冲区】</span><br><span class="line">$ git commit -m <span class="string">&quot;提交的信息&quot;</span>// 提交信息到本地仓库</span><br></pre></td></tr></table></figure><p>4.查看仓库的提交日志</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> // 查看仓库提交日志</span><br></pre></td></tr></table></figure><p>5.再输入<code>git status</code> 查看仓库状态</p><p>6.输入<code>git push origin master</code> 将本地仓库提交到远程仓库,<code>origin</code> 是远程主机的名字。</p><h3 id="hexo-三部曲"><a href="#hexo-三部曲" class="headerlink" title="hexo 三部曲"></a><code>hexo </code>三部曲</h3><p>设置主题后需要写的代码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>]]></content>
     
