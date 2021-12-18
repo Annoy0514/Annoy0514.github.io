@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-12-18T12:34:16.474Z</updated>
+  <updated>2021-12-18T12:40:30.048Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【21/11/30】13_Java_List知识点</title>
+    <link href="http://example.com/2021/12/18/13_List/"/>
+    <id>http://example.com/2021/12/18/13_List/</id>
+    <published>2021-12-18T12:39:17.826Z</published>
+    <updated>2021-12-18T12:40:30.048Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="List集合"><a href="#List集合" class="headerlink" title="List集合"></a>List集合</h2><p>List接口的特点：</p><ol><li>有序的集合，存储元素与取出元素的顺序是一致的。</li><li>有索引，包含了一些带索引的方法。</li><li>允许存储重复的元素。</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.list接口 extends Collection接口;</span><br></pre></td></tr></table></figure><h3 id="ArrayList集合"><a href="#ArrayList集合" class="headerlink" title="ArrayList集合"></a>ArrayList集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.ArrayList;</span><br></pre></td></tr></table></figure><p>特点：</p><ol><li>ArrayList集合数据存储的结构是<strong>数组结构</strong>。元素增删慢，查找快。</li><li>由于日常开发中使用最多的功能为查询数据、遍历数据，所以ArrayList是最常用的集合。</li></ol><h3 id="LinkedList集合"><a href="#LinkedList集合" class="headerlink" title="LinkedList集合"></a>LinkedList集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.LinkedList</span><br></pre></td></tr></table></figure><p>特点：</p><ol><li>底层是一个链表结构，查询慢，增删快。</li><li>里面包含了大量操作首尾元素的方法。</li><li>使用LinkedList集合特有的方法，<strong>不能使用多态</strong>。</li></ol><h3 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h3><p>继承Collection类。</p><p>特点：</p><ol><li>不包含重复元素。</li><li>没有索引。</li></ol><h4 id="HashSet集合-implements-Set接口"><a href="#HashSet集合-implements-Set接口" class="headerlink" title="HashSet集合 implements Set接口"></a>HashSet集合 implements Set接口</h4><p>特点：</p><ol><li>不允许存储重复的元素。</li><li>没有索引，没有带索引的方法。不能使用for循环遍历。</li><li>无序的集合，存储元素和取出元素的顺序不一致。</li><li>底层是一个哈希表结构(查询速度非常快)。</li></ol><h4 id="哈希值"><a href="#哈希值" class="headerlink" title="哈希值"></a>哈希值</h4><p>一个十进制的整数，由系统随机给出。（对象的地址，是一个逻辑地址，不是实际的存储的物理地址。）</p><h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p>HashSet集合存储的数据的结构。(哈希表)</p><p>JDK1.8之前：哈希表= 数组 + 链表。</p><p>JDK1.8之后：哈希表 = 数组 + 链表；哈希表 = 数组 + 红黑树(提升查询的速度)。</p><p><strong>哈希表的特点：速度快。</strong></p><img src="/2021/12/18/13_List/1638329190319.png" class="" width="1638329190319"><p><strong>使用HashSet存储自定义类型的元素。</strong></p><p>必须重写hashCode()方法和equals方法。</p><h4 id="LinkedHashSet集合"><a href="#LinkedHashSet集合" class="headerlink" title="LinkedHashSet集合"></a>LinkedHashSet集合</h4><p>继承自 HashSet集合。</p><p>特点：</p><ol><li>底层是一个<strong>哈希表</strong>(数组+链表/红黑树)+<strong>链表</strong>：多一条链表（记录元素的存储位置），保证元素有序。</li><li>不允许重复。</li></ol>]]></content>
+    
+    
+    <summary type="html">Java中List集合相关内容。</summary>
+    
+    
+    
+    <category term="java" scheme="http://example.com/categories/java/"/>
+    
+    
+    <category term="java" scheme="http://example.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>【21/11/30】12_Java_数据结构基础知识点(一)</title>
