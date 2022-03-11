@@ -4,7 +4,7 @@
   <url>
     <loc>http://example.com/2022/02/20/SpringBoot%E7%AC%94%E8%AE%B0-3/</loc>
     
-    <lastmod>2022-02-20</lastmod>
+    <lastmod>2022-02-24</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -436,7 +436,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -444,42 +444,42 @@
   
   <url>
     <loc>http://example.com/tags/java/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/git/</loc>
-    <lastmod>2022-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/SpringMVC/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Spring/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/SpringBoot/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <loc>http://example.com/tags/SpringMVC/</loc>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Mybatis/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/SpringBoot/</loc>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -488,35 +488,35 @@
   
   <url>
     <loc>http://example.com/categories/java/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/git/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Spring/</loc>
-    <lastmod>2022-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/SpringBoot/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Mybatis/</loc>
-    <lastmod>2022-02-21</lastmod>
+    <lastmod>2022-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/SpringBoot/</loc>
+    <lastmod>2022-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
