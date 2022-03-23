@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【22/03/22】在线学习网站项目_day02 | Annoy</title><meta name="keywords" content="SpringBoot"><meta name="author" content="Annoy"><meta name="copyright" content="Annoy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习开发在线学习网站项目第二天内容：对子模块service_edu进行完善开发。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【22&#x2F;03&#x2F;22】在线学习网站项目_day02">
+<meta property="og:url" content="http://example.com/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/index.html">
+<meta property="og:site_name" content="Annoy">
+<meta property="og:description" content="学习开发在线学习网站项目第二天内容：对子模块service_edu进行完善开发。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/spring.png">
+<meta property="article:published_time" content="2022-03-22T10:23:47.000Z">
+<meta property="article:modified_time" content="2022-03-22T14:17:17.617Z">
+<meta property="article:author" content="Annoy">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/spring.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Annoy","link":"Link: ","source":"Source: Annoy","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【22/03/22】在线学习网站项目_day02',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-22 22:17:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Annoy" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/se.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">55</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/spring.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Annoy</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【22/03/22】在线学习网站项目_day02</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-22T10:23:47.000Z" title="Created 2022-03-22 18:23:47">2022-03-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-22T14:17:17.617Z" title="Updated 2022-03-22 22:17:17">2022-03-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SpringBoot/">SpringBoot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【22/03/22】在线学习网站项目_day02"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Day02-在线学习网站项目"><a href="#Day02-在线学习网站项目" class="headerlink" title="Day02_在线学习网站项目"></a>Day02_在线学习网站项目</h2><ol>
+<li><p>教师查询</p>
+</li>
+<li><p>教师删除</p>
+<ol>
+<li><p>配置逻辑删除插件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ISqlInjector <span class="title">sqlInjector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> LogicSqlInjector();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>逻辑删除属性</strong> 上添加 <strong><font color=red>注解</font></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiModelProperty(value = &quot;逻辑删除 1（true）已删除， 0（false）未删除&quot;)</span></span><br><span class="line"><span class="meta">@TableLogic</span></span><br><span class="line"><span class="keyword">private</span> Boolean isDeleted;</span><br></pre></td></tr></table></figure></li>
+<li><p>编写 <code>Controller</code> 中的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeleteMapping(&quot;&#123;id&#125;&quot;)</span> <span class="comment">// 路径传递id值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">removeTeacher</span><span class="params">(<span class="meta">@PathVariable</span> String id)</span> </span>&#123; <span class="comment">// 得到路径中的id值</span></span><br><span class="line">	<span class="keyword">boolean</span> flag = teacherService.removeById(id)</span><br><span class="line">    <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>如何测试</p>
+<p><font color =red>Delete 提交</font></p>
+<p>借助测试类：<font color=red>Swagger</font></p>
+<ul>
+<li><p>Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化<code>RESTful</code>风格的 Web 服务。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 及时性 (接口变更后，能够及时准确地通知相关前后端开发人员)</span><br><span class="line"><span class="bullet">2.</span> 规范性 (并且保证接口的规范性，如接口的地址，请求方式，参数及响应格式和错误信息)</span><br><span class="line"><span class="bullet">3.</span> 一致性 (接口信息一致，不会出现因开发人员拿到的文档版本不一致，而出现分歧)</span><br><span class="line"><span class="bullet">4.</span> 可测性 (直接在接口文档上进行测试，以方便理解业务)</span><br></pre></td></tr></table></figure></li>
+<li><p>配置 Swagger 2</p>
+<ol>
+<li><p>创建一个 <code>common</code> 模块</p>
+<ol>
+<li><p>在 <code>guli-online</code> 下创建 <code>common</code>模块</p>
+</li>
+<li><p>修改 <code>common</code> 模块中的 <code>pom.xml</code> 文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      ```</span><br><span class="line"></span><br><span class="line">2. `common` 作为父工程，在创建 `service-base`</span><br><span class="line"></span><br><span class="line">   1. 创建 Swagger的配置类 ` SwaggerConfig.java`</span><br><span class="line"></span><br><span class="line">      ```java</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>使用 Swagger 2</p>
+<ol>
+<li><p>在 service 的 <code>pom.xml</code> 文件中添加如下代码: 引入 <code>service-base</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.atguigu<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>service-base<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Annoy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/">http://example.com/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SpringBoot/">SpringBoot</a></div><div class="post_share"><div class="social-share" data-image="/img/spring.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/"><img class="prev-cover" src="/img/spring.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【22/03/22】在线学习网站项目_day01</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/17/SpringBoot%E7%AC%94%E8%AE%B0-1/" title="【22/01/15】SpringBoot学习笔记(一)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-17</div><div class="title">【22/01/15】SpringBoot学习笔记(一)</div></div></a></div><div><a href="/2022/02/20/SpringBoot%E7%AC%94%E8%AE%B0-3/" title="【22/01/22】SpringBoot学习笔记(三)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-20</div><div class="title">【22/01/22】SpringBoot学习笔记(三)</div></div></a></div><div><a href="/2022/01/22/SpringBoot%E7%AC%94%E8%AE%B0-2/" title="【22/01/22】SpringBoot学习笔记(二)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-22</div><div class="title">【22/01/22】SpringBoot学习笔记(二)</div></div></a></div><div><a href="/2022/02/24/SpringBoot%E7%AC%94%E8%AE%B0-4/" title="【22/02/24】SpringBoot学习笔记(四)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-24</div><div class="title">【22/02/24】SpringBoot学习笔记(四)</div></div></a></div><div><a href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/" title="【22/03/22】在线学习网站项目_day01"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-22</div><div class="title">【22/03/22】在线学习网站项目_day01</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/se.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Annoy</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">55</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/annoy0514"><i class="fab fa-github"></i><span>Follow me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/annoy0514" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:843511468@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Day02-%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">Day02_在线学习网站项目</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/" title="【22/03/22】在线学习网站项目_day02"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/22】在线学习网站项目_day02"/></a><div class="content"><a class="title" href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/" title="【22/03/22】在线学习网站项目_day02">【22/03/22】在线学习网站项目_day02</a><time datetime="2022-03-22T10:23:47.000Z" title="Created 2022-03-22 18:23:47">2022-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/" title="【22/03/22】在线学习网站项目_day01"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/22】在线学习网站项目_day01"/></a><div class="content"><a class="title" href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/" title="【22/03/22】在线学习网站项目_day01">【22/03/22】在线学习网站项目_day01</a><time datetime="2022-03-22T08:53:26.000Z" title="Created 2022-03-22 16:53:26">2022-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/18/Mybatis-plus%E7%AC%94%E8%AE%B0/" title="【22/03/18】Mybatis-plus笔记"><img src="/img/Mybatis_plus.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/18】Mybatis-plus笔记"/></a><div class="content"><a class="title" href="/2022/03/18/Mybatis-plus%E7%AC%94%E8%AE%B0/" title="【22/03/18】Mybatis-plus笔记">【22/03/18】Mybatis-plus笔记</a><time datetime="2022-03-18T08:40:32.000Z" title="Created 2022-03-18 16:40:32">2022-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="【22/03/15】Linux学习笔记"><img src="/img/javaweb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/15】Linux学习笔记"/></a><div class="content"><a class="title" href="/2022/03/15/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="【22/03/15】Linux学习笔记">【22/03/15】Linux学习笔记</a><time datetime="2022-03-15T08:43:04.000Z" title="Created 2022-03-15 16:43:04">2022-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/04/JavaWeb-Servlet%E7%AC%94%E8%AE%B0/" title="【22/03/04】JavaWebServlet笔记"><img src="/img/javaweb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/04】JavaWebServlet笔记"/></a><div class="content"><a class="title" href="/2022/03/04/JavaWeb-Servlet%E7%AC%94%E8%AE%B0/" title="【22/03/04】JavaWebServlet笔记">【22/03/04】JavaWebServlet笔记</a><time datetime="2022-03-04T14:06:04.000Z" title="Created 2022-03-04 22:06:04">2022-03-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Annoy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,welcome to Annoy 's blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
