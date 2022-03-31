@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【22/03/30】在线学习网站项目_day03 | Annoy</title><meta name="keywords" content="SpringBoot"><meta name="author" content="Annoy"><meta name="copyright" content="Annoy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习开发在线学习网站项目第三天内容：讲师管理页面的前端模块开发内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【22&#x2F;03&#x2F;30】在线学习网站项目_day03">
+<meta property="og:url" content="http://example.com/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/index.html">
+<meta property="og:site_name" content="Annoy">
+<meta property="og:description" content="学习开发在线学习网站项目第三天内容：讲师管理页面的前端模块开发内容。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/spring.png">
+<meta property="article:published_time" content="2022-03-30T06:03:10.000Z">
+<meta property="article:modified_time" content="2022-03-30T13:43:02.238Z">
+<meta property="article:author" content="Annoy">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/spring.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Annoy","link":"Link: ","source":"Source: Annoy","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【22/03/30】在线学习网站项目_day03',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-30 21:43:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Annoy" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/se.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/spring.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Annoy</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【22/03/30】在线学习网站项目_day03</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-30T06:03:10.000Z" title="Created 2022-03-30 14:03:10">2022-03-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-30T13:43:02.238Z" title="Updated 2022-03-30 21:43:02">2022-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SpringBoot/">SpringBoot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【22/03/30】在线学习网站项目_day03"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Day03-在线学习网站项目——教师管理系统前端部分"><a href="#Day03-在线学习网站项目——教师管理系统前端部分" class="headerlink" title="Day03_在线学习网站项目——教师管理系统前端部分"></a>Day03_在线学习网站项目——教师管理系统前端部分</h2><hr>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="准备前端模板"><a href="#准备前端模板" class="headerlink" title="准备前端模板"></a>准备前端模板</h4><p><code>vue-admin-template</code></p>
+<p>一套后台管理系统基础模板（最少精简版），可作为模板进行二次开发。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 解压压缩包</span><br><span class="line"># 进入目录</span><br><span class="line">cd vue-admin-template-master</span><br><span class="line"># 安装依赖</span><br><span class="line">npm install</span><br><span class="line"># 启动。执行后，浏览器自动弹出并访问http:<span class="comment">//localhost:9528/</span></span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="登录地址修改为本地地址"><a href="#登录地址修改为本地地址" class="headerlink" title="登录地址修改为本地地址"></a>登录地址修改为本地地址</h4><p><code>config/dev.env.js</code></p>
+<ol>
+<li><p>系统默认使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BASE_API: <span class="string">&#x27;&quot;https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin&quot;&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>登录请求地址修改为 <strong>本地</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BASE_API: <span class="string">&#x27;&quot;http://localhost:8001&quot;&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>测试登录调用的方法</p>
+<p><code>login</code> 登录操作方法，<code>info</code>登录之后获取用户信息的方法，创建接口了两个方法实现登录。</p>
+<ul>
+<li><code>login</code> 返回 <code>token值</code></li>
+<li><code>info</code> 返回 <code>roles name avator</code></li>
+</ul>
+<p>修改 <code>api/login.js</code> 中的 <font color=red>url</font></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.login中</span></span><br><span class="line"><span class="attr">url</span>: <span class="string">&#x27;eduservice/user/login&#x27;</span></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="comment">// 2.info中</span></span><br><span class="line"><span class="attr">url</span>: <span class="string">&#x27;eduservice/user/login&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>测试出现 <strong>跨域问题</strong></p>
+<p>通过一个地址访问另外一个地址，这个过程中如果有三个位置中任意一个地方不一样会出现该问题。</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">访问地址 http https</span><br><span class="line">ip地址 <span class="number">192.168.1.1</span> <span class="number">172.11.11.11</span></span><br><span class="line">端口号 <span class="number">9528 8001</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>解决方案</strong></p>
+<ul>
+<li><p>后端接口 <code>Controller</code> 中添加注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CrossOrigin</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用网关解决问题</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h4 id="框架使用过程"><a href="#框架使用过程" class="headerlink" title="框架使用过程"></a>框架使用过程</h4><ol>
+<li><p>添加 <strong>路由</strong></p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330154426645.png" class="" title="image-20220330154426645"></li>
+<li><p>点击某个路由，显示路由对应页面的内容</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330155305726.png" class="" title="image-20220330155305726"></li>
+<li><p>在 <code>api</code> 文件夹创建 <code>js</code> 文件，定义接口和参数。</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330155423189.png" class="" title="image-20220330155423189"></li>
+<li><p>创建 <code>vue</code> 页面引入 <code>js</code> 文件，调用方法实现功能</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330155514466.png" class="" title="image-20220330155514466"></li>
+</ol>
+<hr>
+<h3 id="讲师列表前端实现"><a href="#讲师列表前端实现" class="headerlink" title="讲师列表前端实现"></a>讲师列表前端实现</h3><h4 id="实现查询-返回所有教师信息"><a href="#实现查询-返回所有教师信息" class="headerlink" title="实现查询: 返回所有教师信息"></a>实现查询: 返回所有教师信息</h4><ol>
+<li><p>修改 <strong>路由</strong></p>
+<p><code>index.js</code>文件中，根据页面导航栏添加 <strong>讲师管理</strong> 模块。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/teacher&#x27;</span>,</span><br><span class="line">  <span class="attr">component</span>: Layout,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="string">&#x27;/teacher/table&#x27;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Example&#x27;</span>,</span><br><span class="line">  <span class="attr">meta</span>: &#123; <span class="attr">title</span>: <span class="string">&#x27;讲师管理&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;example&#x27;</span> &#125;,</span><br><span class="line">  <span class="attr">children</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;table&#x27;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;讲师列表&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/list&#x27;</span>),</span><br><span class="line">      <span class="attr">meta</span>: &#123; <span class="attr">title</span>: <span class="string">&#x27;讲师列表&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;table&#x27;</span> &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;save&#x27;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;添加讲师&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/save&#x27;</span>),</span><br><span class="line">      <span class="attr">meta</span>: &#123; <span class="attr">title</span>: <span class="string">&#x27;添加讲师&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;tree&#x27;</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>效果图:</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330195646297.png" class="" title="image-20220330195646297"></li>
+<li><p>修改路由中对应的页面 – <code>component()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/list&#x27;</span>)</span><br><span class="line"><span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/save&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>在 <code>api</code> 文件夹创建 <code>js</code> 文件，定义接口和参数 — <code>src/edu/teacher.js</code></p>
+<p>根据 <strong>后端</strong> 的 <code>controller</code> 中定义的方法，配置接口和参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;@/utils/request&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="comment">// 1.讲师列表(条件查询分页)</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        current 当前页</span></span><br><span class="line"><span class="comment">        limit 每页记录数</span></span><br><span class="line"><span class="comment">        teacherQuery 条件对象</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="title">getTeacherListPage</span>(<span class="params">current,limit,teacherQuery</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> request(&#123;</span><br><span class="line">            <span class="attr">url</span>: <span class="string">&#x27;/eduservice/teacher/pageTeacherCondition/&#x27;</span> + current + <span class="string">&#x27;/&#x27;</span> + limit,</span><br><span class="line">            <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">            <span class="comment">// 后端使用requestBody获取数据</span></span><br><span class="line">            <span class="comment">// 前端中用data,表示把对象转换成json传递到接口中</span></span><br><span class="line">            <span class="attr">data</span>: teacherQuery</span><br><span class="line">          &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建 <code>list.vue</code> 并引入 <code>js</code> 文件，调用方法实现功能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 这里面放入前端的模板，再根据下面script中的数据源进行修改 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">// 1.先引入teacher.js</span><br><span class="line">import teacher from &#x27;@/api/edu/teacher&#x27;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    // 写核心代码部分</span><br><span class="line">    data() &#123; // 数据的变量和初始值</span><br><span class="line">        return &#123;</span><br><span class="line">            list:null,//查询之后接口返回集合</span><br><span class="line">            page:1,//当前页</span><br><span class="line">            limit:10,//每页显示的记录数</span><br><span class="line">            total:0,//总记录数</span><br><span class="line">            teacherQuery:&#123;&#125;//条件封装对象</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created() &#123; // 页面渲染之前执行，一般调用methods中的方法</span><br><span class="line">        this.getList()</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123; // 创建具体的方法，调用teacher.js定义的方法</span><br><span class="line">        // 讲师列表的方法</span><br><span class="line">        getList() &#123;</span><br><span class="line">            teacher.getTeacherListPage(this.page,this.limit,this.teacherQuery)</span><br><span class="line">            .then(response =&gt;&#123;//请求成功</span><br><span class="line">                // response接口返回的数据</span><br><span class="line">                // console.log(response)</span><br><span class="line">                this.list = response.data.rows</span><br><span class="line">                this.total = response.data.total</span><br><span class="line">                console.log(this.list)</span><br><span class="line">                console.log(this.total)</span><br><span class="line">            &#125;)</span><br><span class="line">            .catch(error=&gt;&#123;//请求失败</span><br><span class="line">                console.log(error)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>结果展示</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330200235389.png" class="" title="image-20220330200235389"></li>
+</ol>
+<br>
+
+<h4 id="实现分页效果"><a href="#实现分页效果" class="headerlink" title="实现分页效果"></a>实现分页效果</h4><ol>
+<li><p>效果演示</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330201036584.png" class="" title="image-20220330201036584"></li>
+<li><p><code>list.vue</code>中添加 <strong>分页代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">      &lt;!-- 分页 --&gt;</span><br><span class="line">    &lt;el-pagination</span><br><span class="line">      :current-page=&quot;page&quot;</span><br><span class="line">      :page-size=&quot;limit&quot;</span><br><span class="line">      :total=&quot;total&quot;</span><br><span class="line">      style=&quot;padding: 30px 0; text-align: center;&quot;</span><br><span class="line">      layout=&quot;total, prev, pager, next, jumper&quot;</span><br><span class="line">      @current-change=&quot;getList&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>修改获取讲师信息的方法 – -添加 <strong>页码参数</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 讲师列表的方法</span></span><br><span class="line">        <span class="function"><span class="title">getList</span>(<span class="params">page = <span class="number">1</span></span>)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.page = page <span class="comment">// 获取每一页的数据</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<br>
+
+<h4 id="教师信息的条件查询"><a href="#教师信息的条件查询" class="headerlink" title="教师信息的条件查询"></a>教师信息的条件查询</h4><ol>
+<li><p>效果演示</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330202359187.png" class="" title="image-20220330202359187"></li>
+<li><p><code>list.vue</code>中添加 <strong>查询表单代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--查询表单--&gt;</span><br><span class="line">&lt;el-form :inline=&quot;true&quot; class=&quot;demo-form-inline&quot;&gt;</span><br><span class="line">  &lt;el-form-item&gt;</span><br><span class="line">    &lt;el-input v-model=&quot;teacherQuery.name&quot; placeholder=&quot;讲师名&quot;/&gt;</span><br><span class="line">  &lt;/el-form-item&gt;</span><br><span class="line">   </span><br><span class="line">  &lt;el-form-item&gt;</span><br><span class="line">    &lt;el-select v-model=&quot;teacherQuery.level&quot; clearable placeholder=&quot;讲师头衔&quot;&gt;</span><br><span class="line">      &lt;el-option :value=&quot;1&quot; label=&quot;高级讲师&quot;/&gt;</span><br><span class="line">      &lt;el-option :value=&quot;2&quot; label=&quot;首席讲师&quot;/&gt;</span><br><span class="line">    &lt;/el-select&gt;</span><br><span class="line">  &lt;/el-form-item&gt;</span><br><span class="line">   </span><br><span class="line">  &lt;el-form-item label=&quot;添加时间&quot;&gt;</span><br><span class="line">    &lt;el-date-picker</span><br><span class="line">      v-model=&quot;teacherQuery.begin&quot;</span><br><span class="line">      type=&quot;datetime&quot;</span><br><span class="line">      placeholder=&quot;选择开始时间&quot;</span><br><span class="line">      value-format=&quot;yyyy-MM-dd HH:mm:ss&quot;</span><br><span class="line">      default-time=&quot;00:00:00&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;/el-form-item&gt;</span><br><span class="line">  &lt;el-form-item&gt;</span><br><span class="line">    &lt;el-date-picker</span><br><span class="line">      v-model=&quot;teacherQuery.end&quot;</span><br><span class="line">      type=&quot;datetime&quot;</span><br><span class="line">      placeholder=&quot;选择截止时间&quot;</span><br><span class="line">      value-format=&quot;yyyy-MM-dd HH:mm:ss&quot;</span><br><span class="line">      default-time=&quot;00:00:00&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;/el-form-item&gt;</span><br><span class="line">   </span><br><span class="line">&lt;el-button type=&quot;primary&quot; icon=&quot;el-icon-search&quot; @click=&quot;getList()&quot;&gt;查询&lt;/el-button&gt;</span><br><span class="line">&lt;el-button type=&quot;default&quot; @click=&quot;resetData()&quot;&gt;清空&lt;/el-button&gt;</span><br><span class="line">&lt;/el-form&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<br>
+
+<h4 id="教师信息删除"><a href="#教师信息删除" class="headerlink" title="教师信息删除"></a>教师信息删除</h4><ol>
+<li><p>每条记录后，添加 <strong>删除</strong> 按钮</p>
+<img src="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/image-20220330204525429.png" class="" title="image-20220330204525429"></li>
+<li><p>给 <strong>删除按钮</strong> 绑定 <strong>删除方法</strong> — <code>list.vue</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button type=&quot;danger&quot; size=&quot;mini&quot; icon=&quot;el-icon-delete&quot; @click=&quot;removeDataById(scope.row.id)&quot;&gt;删除&lt;/el-button&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>定义 **删除方法 **— <code>teacher.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2.删除讲师</span></span><br><span class="line">    <span class="function"><span class="title">deleteTeacherId</span>(<span class="params">id</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> request(&#123;</span><br><span class="line">            <span class="attr">url</span>: <span class="string">&#x27;/eduservice/teacher/&#x27;</span> + id,</span><br><span class="line">            <span class="attr">method</span>: <span class="string">&#x27;delete&#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>调用方法实现 <strong>删除功能</strong> — <code>list.vue</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除讲师的方法</span></span><br><span class="line"><span class="function"><span class="title">removeDataById</span>(<span class="params">id</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.$confirm(<span class="string">&#x27;此操作将永久删除讲师记录, 是否继续?&#x27;</span>, <span class="string">&#x27;提示&#x27;</span>, &#123;</span><br><span class="line">        <span class="attr">confirmButtonText</span>: <span class="string">&#x27;确定&#x27;</span>,</span><br><span class="line">        <span class="attr">cancelButtonText</span>: <span class="string">&#x27;取消&#x27;</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;warning&#x27;</span></span><br><span class="line">    &#125;).then(<span class="function">() =&gt;</span> &#123;  <span class="comment">//点击确定，执行then方法</span></span><br><span class="line">        <span class="comment">//调用删除的方法</span></span><br><span class="line">        teacher.deleteTeacherId(id)</span><br><span class="line">            .then(<span class="function"><span class="params">response</span> =&gt;</span>&#123;<span class="comment">//删除成功</span></span><br><span class="line">            <span class="comment">//提示信息</span></span><br><span class="line">            <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">                <span class="attr">message</span>: <span class="string">&#x27;删除成功!&#x27;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">//回到列表页面</span></span><br><span class="line">            <span class="built_in">this</span>.getList()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;) <span class="comment">//点击取消，执行catch方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<br>
+
+<h4 id="讲师添加功能"><a href="#讲师添加功能" class="headerlink" title="讲师添加功能"></a>讲师添加功能</h4><br>
+
+<h4 id="讲师修改功能"><a href="#讲师修改功能" class="headerlink" title="讲师修改功能"></a>讲师修改功能</h4><ol>
+<li>每条记录添加 <strong>修改按钮</strong></li>
+<li>点击修改按钮，进入表单页面，进行 <strong>数据回显</strong></li>
+<li>dasda</li>
+<li>在表单页面实现数据回显<ol>
+<li><code>teacher.js</code> 中定义根据id查询接口</li>
+<li>在页面调用接口实现数据回显</li>
+<li>调用 根据id查询的方法</li>
+</ol>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Annoy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/">http://example.com/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SpringBoot/">SpringBoot</a></div><div class="post_share"><div class="social-share" data-image="/img/spring.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/03/23/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/"><img class="prev-cover" src="/img/spring.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【22/03/23】在线学习网站项目_day02</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/17/SpringBoot%E7%AC%94%E8%AE%B0-1/" title="【22/01/15】SpringBoot学习笔记(一)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-17</div><div class="title">【22/01/15】SpringBoot学习笔记(一)</div></div></a></div><div><a href="/2022/02/20/SpringBoot%E7%AC%94%E8%AE%B0-3/" title="【22/01/22】SpringBoot学习笔记(三)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-20</div><div class="title">【22/01/22】SpringBoot学习笔记(三)</div></div></a></div><div><a href="/2022/01/22/SpringBoot%E7%AC%94%E8%AE%B0-2/" title="【22/01/22】SpringBoot学习笔记(二)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-22</div><div class="title">【22/01/22】SpringBoot学习笔记(二)</div></div></a></div><div><a href="/2022/02/24/SpringBoot%E7%AC%94%E8%AE%B0-4/" title="【22/02/24】SpringBoot学习笔记(四)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-24</div><div class="title">【22/02/24】SpringBoot学习笔记(四)</div></div></a></div><div><a href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/" title="【22/03/22】在线学习网站项目_day01"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-22</div><div class="title">【22/03/22】在线学习网站项目_day01</div></div></a></div><div><a href="/2022/03/23/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/" title="【22/03/23】在线学习网站项目_day02"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">【22/03/23】在线学习网站项目_day02</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/se.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Annoy</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">56</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/annoy0514"><i class="fab fa-github"></i><span>Follow me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/annoy0514" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:843511468@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Day03-%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%99%E5%B8%88%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%89%8D%E7%AB%AF%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">Day03_在线学习网站项目——教师管理系统前端部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%89%8D%E7%AB%AF%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.1.1.</span> <span class="toc-text">准备前端模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E5%9C%B0%E5%9D%80%E4%BF%AE%E6%94%B9%E4%B8%BA%E6%9C%AC%E5%9C%B0%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.2.</span> <span class="toc-text">登录地址修改为本地地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">框架使用过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B2%E5%B8%88%E5%88%97%E8%A1%A8%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">讲师列表前端实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%9F%A5%E8%AF%A2-%E8%BF%94%E5%9B%9E%E6%89%80%E6%9C%89%E6%95%99%E5%B8%88%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">实现查询: 返回所有教师信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%88%86%E9%A1%B5%E6%95%88%E6%9E%9C"><span class="toc-number">1.2.2.</span> <span class="toc-text">实现分页效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%99%E5%B8%88%E4%BF%A1%E6%81%AF%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.2.3.</span> <span class="toc-text">教师信息的条件查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%99%E5%B8%88%E4%BF%A1%E6%81%AF%E5%88%A0%E9%99%A4"><span class="toc-number">1.2.4.</span> <span class="toc-text">教师信息删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B2%E5%B8%88%E6%B7%BB%E5%8A%A0%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.5.</span> <span class="toc-text">讲师添加功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B2%E5%B8%88%E4%BF%AE%E6%94%B9%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.6.</span> <span class="toc-text">讲师修改功能</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/" title="【22/03/30】在线学习网站项目_day03"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/30】在线学习网站项目_day03"/></a><div class="content"><a class="title" href="/2022/03/30/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day03/" title="【22/03/30】在线学习网站项目_day03">【22/03/30】在线学习网站项目_day03</a><time datetime="2022-03-30T06:03:10.000Z" title="Created 2022-03-30 14:03:10">2022-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/" title="【22/03/23】在线学习网站项目_day02"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/23】在线学习网站项目_day02"/></a><div class="content"><a class="title" href="/2022/03/23/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/" title="【22/03/23】在线学习网站项目_day02">【22/03/23】在线学习网站项目_day02</a><time datetime="2022-03-23T10:23:47.000Z" title="Created 2022-03-23 18:23:47">2022-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/" title="【22/03/22】在线学习网站项目_day01"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/22】在线学习网站项目_day01"/></a><div class="content"><a class="title" href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/" title="【22/03/22】在线学习网站项目_day01">【22/03/22】在线学习网站项目_day01</a><time datetime="2022-03-22T08:53:26.000Z" title="Created 2022-03-22 16:53:26">2022-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/18/Mybatis-plus%E7%AC%94%E8%AE%B0/" title="【22/03/18】Mybatis-plus笔记"><img src="/img/Mybatis_plus.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/18】Mybatis-plus笔记"/></a><div class="content"><a class="title" href="/2022/03/18/Mybatis-plus%E7%AC%94%E8%AE%B0/" title="【22/03/18】Mybatis-plus笔记">【22/03/18】Mybatis-plus笔记</a><time datetime="2022-03-18T08:40:32.000Z" title="Created 2022-03-18 16:40:32">2022-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="【22/03/15】Linux学习笔记"><img src="/img/javaweb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/15】Linux学习笔记"/></a><div class="content"><a class="title" href="/2022/03/15/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="【22/03/15】Linux学习笔记">【22/03/15】Linux学习笔记</a><time datetime="2022-03-15T08:43:04.000Z" title="Created 2022-03-15 16:43:04">2022-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Annoy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,welcome to Annoy 's blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
