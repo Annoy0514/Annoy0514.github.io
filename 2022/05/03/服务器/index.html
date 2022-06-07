@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【22/05/03】SpringBoot前后端分离项目部署服务器 | Annoy</title><meta name="keywords" content="SpringBoot"><meta name="author" content="Annoy"><meta name="copyright" content="Annoy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SpringBoot前后端分离项目部署在服务器的流程记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【22&#x2F;05&#x2F;03】SpringBoot前后端分离项目部署服务器">
+<meta property="og:url" content="http://example.com/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="Annoy">
+<meta property="og:description" content="SpringBoot前后端分离项目部署在服务器的流程记录。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/spring.png">
+<meta property="article:published_time" content="2022-05-03T11:59:24.000Z">
+<meta property="article:modified_time" content="2022-05-03T14:08:11.561Z">
+<meta property="article:author" content="Annoy">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/spring.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Annoy","link":"Link: ","source":"Source: Annoy","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【22/05/03】SpringBoot前后端分离项目部署服务器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-03 22:08:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Annoy" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/se.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">62</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/spring.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Annoy</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【22/05/03】SpringBoot前后端分离项目部署服务器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-05-03T11:59:24.000Z" title="Created 2022-05-03 19:59:24">2022-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-03T14:08:11.561Z" title="Updated 2022-05-03 22:08:11">2022-05-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SpringBoot/">SpringBoot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【22/05/03】SpringBoot前后端分离项目部署服务器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前后端项目部署"><a href="#前后端项目部署" class="headerlink" title="前后端项目部署"></a>前后端项目部署</h2><hr>
+<h3 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1 环境配置"></a>1 环境配置</h3><h4 id="1-docker配置mysql"><a href="#1-docker配置mysql" class="headerlink" title="1.docker配置mysql"></a>1.docker配置mysql</h4><p>1.安装mysql</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull mysql:<span class="number">5</span>.<span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>2.配置mysql</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">3307</span>:<span class="number">3306</span> --privileged=<span class="keyword">true</span> -v <span class="regexp">/home/my</span>sql8<span class="regexp">/log:/</span>var<span class="regexp">/log/my</span>sql -v <span class="regexp">/home/my</span>sql8<span class="regexp">/data:/</span>var<span class="regexp">/lib/my</span>sql -v <span class="regexp">/home/my</span>sql8<span class="regexp">/conf:/</span>etc<span class="regexp">/mysql/</span>conf.d -e MYSQL_ROOT_PASSWORD=<span class="number">123456</span> --name mysql8 mysql:<span class="number">8.0</span></span><br></pre></td></tr></table></figure>
+
+<p>3.使用mysql</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># docker exec -it mysql bash <span class="comment">// 运行mysql</span></span></span><br><span class="line"><span class="meta"># mysql -u root -p <span class="comment">// 登录mysql</span></span></span><br><span class="line"><span class="meta"># show variables like <span class="meta-string">&quot;character%&quot;</span> <span class="comment">// 查询字符类型</span></span></span><br></pre></td></tr></table></figure>
+
+<p>注意：<strong>docker安装完MySQL并run出容器后，建议请先修改完字符集编码后再新建mysql库-表-插数据。</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd /home/mysql8/conf/</span></span><br><span class="line"><span class="comment"># vim my.cnf 【新建文件】</span></span><br><span class="line">添加以下内容：</span><br><span class="line">————————————————————————————————————</span><br><span class="line">[client]</span><br><span class="line">default_character_set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">collation_server = utf8_general_ci</span><br><span class="line">character_set_server = utf8</span><br><span class="line">————————————————————————————————————</span><br><span class="line"><span class="comment"># docker restart mysql8 【重启mysql】</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="2-docker安装node-js"><a href="#2-docker安装node-js" class="headerlink" title="2.docker安装node.js"></a>2.docker安装node.js</h4><p>1.安装nodejs</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="keyword">node</span><span class="title">:latest</span></span><br></pre></td></tr></table></figure>
+
+<p>2.安装完成，运行nodejs</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name <span class="keyword">node</span><span class="title">-test</span> <span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure>
+
+<p>3.最后进入查看容器运行的 node 版本:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it <span class="keyword">node</span><span class="title">-test</span> /bin/bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -p <span class="number">9001</span>:<span class="number">80</span> --name nginx -v <span class="regexp">/usr/</span>local<span class="regexp">/docker/</span>nginx<span class="regexp">/conf/</span>nginx.conf:<span class="regexp">/etc/</span>nginx<span class="regexp">/nginx.conf -v /u</span>sr<span class="regexp">/local/</span>docker<span class="regexp">/nginx/</span>conf<span class="regexp">/conf.d:/</span>etc<span class="regexp">/nginx/</span>conf.d -v <span class="regexp">/usr/</span>local<span class="regexp">/docker/</span>nginx<span class="regexp">/log:/</span>var<span class="regexp">/log/</span>nginx -v <span class="regexp">/usr/</span>local<span class="regexp">/docker/</span>nginx<span class="regexp">/html:/u</span>sr<span class="regexp">/share/</span>nginx/html -d nginx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h4><p><a target="_blank" rel="noopener" href="https://www.linuxprobe.com/linux-install-nginx.html">Linux环境下安装nginx | 《Linux就该这么学》 (linuxprobe.com)</a></p>
+<hr>
+<h4 id="4-安装Redis"><a href="#4-安装Redis" class="headerlink" title="4.安装Redis"></a>4.安装Redis</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bJydsJ/p/14962649.html">Linux：CentOS7下安装Redis的详细步骤 - 不经意的瞬间 - 博客园 (cnblogs.com)</a></p>
+<hr>
+<h3 id="2-项目上线"><a href="#2-项目上线" class="headerlink" title="2 项目上线"></a>2 项目上线</h3><h4 id="1-演示项目介绍"><a href="#1-演示项目介绍" class="headerlink" title="1.演示项目介绍"></a>1.演示项目介绍</h4><p>拿若依项目作为演示(项目地址：<a target="_blank" rel="noopener" href="http://www.ruoyi.vip/">若依</a>)。</p>
+<p>项目简介：基于SpringBoot的权限管理系统，<strong>前后端分离</strong>。</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503151158112.png" class="" title="image-20220503151158112">
+
+<p><strong>项目结构</strong></p>
+<p><strong>后端部分</strong> 和 <strong>前端部分</strong></p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503151356684.png" class="" title="image-20220503151356684">
+
+<p><strong>配置部分</strong></p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503151509720.png" class="" title="image-20220503151509720">
+
+<ul>
+<li><p><code>logback.xml</code>日志配置文件</p>
+<ol>
+<li><p>修改日志指定路径 — <font color=red>Linux下的路径</font></p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503151702176.png" class="" title="image-20220503151702176">
+
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503151746794.png" class="" title="image-20220503151746794"></li>
+<li><p>修改日志输出编码格式，修改为<FONT COLOR=RED> UTF-8 </FONT>(有三处需要添加)</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503151847825.png" class="" title="image-20220503151847825"></li>
+</ol>
+</li>
+<li><p><code>application.yml</code>项目配置</p>
+<ol>
+<li><p>修改启动端口</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503152035015.png" class="" title="image-20220503152035015"></li>
+<li><p>修改Redis配置</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503152130055.png" class="" title="image-20220503152130055"></li>
+</ol>
+</li>
+<li><p><code>application-druid.yml</code>数据源配置</p>
+<ol>
+<li><p>配置数据库连接信息</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503152433091.png" class="" title="image-20220503152433091"></li>
+</ol>
+</li>
+</ul>
+<br>
+
+<p><strong>完事具备，可以开始打包。</strong></p>
+<hr>
+<h4 id="2-前端项目打包"><a href="#2-前端项目打包" class="headerlink" title="2.前端项目打包"></a>2.前端项目打包</h4><ol>
+<li><p>找到前端部分，从 ‘<strong>终端</strong>’ 打开 — <font color=red>Open in Terminal</font></p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503152655911.png" class="" title="image-20220503152655911"></li>
+<li><p>安装前端依赖</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503152816741.png" class="" title="image-20220503152816741"></li>
+<li><p>执行打包命令（打<strong>生产环境包</strong>）</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="builtin-name">run</span> build:prod</span><br></pre></td></tr></table></figure></li>
+<li><p>打包完成后，会生成 <code>dist</code> 文件夹</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503152956504.png" class="" title="image-20220503152956504"></li>
+<li><p>将 <code>ruoyi-ui</code> 压缩成包，上传至服务器</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503153052029.png" class="" title="image-20220503153052029"></li>
+</ol>
+<br>
+
+<p><strong>前端打包完毕！</strong></p>
+<hr>
+<h4 id="3-后端部分打包"><a href="#3-后端部分打包" class="headerlink" title="3.后端部分打包"></a>3.后端部分打包</h4><ol>
+<li><p>将项目在终端打开</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503153311256.png" class="" title="image-20220503153311256"></li>
+<li><p>执行打包命令</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn <span class="class"><span class="keyword">package</span></span></span><br></pre></td></tr></table></figure>
+
+<p><font color=red>生成 jar 包文件</font></p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503153418605.png" class="" title="image-20220503153418605"></li>
+<li><p>后端包上传至服务器</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503153502923.png" class="" title="image-20220503153502923"></li>
+</ol>
+<br>
+
+<p><font color=red>后端打包完成！</font></p>
+<hr>
+<h3 id="3-项目启动"><a href="#3-项目启动" class="headerlink" title="3 项目启动"></a>3 项目启动</h3><h4 id="1-部署前端项目"><a href="#1-部署前端项目" class="headerlink" title="1.部署前端项目"></a>1.部署前端项目</h4><p><font color=red>首先保证装了Nginx！！！</font></p>
+<ol>
+<li><p>配置Nginx</p>
+<ul>
+<li><p>配置用户权限 </p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">user</span> <span class="title">root</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503154455173.png" class="" title="image-20220503154455173"></li>
+<li><p>配置跳转前端资源的路径</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">            root   <span class="regexp">/root/</span>workspace<span class="regexp">/ruoyi-ui/</span>dist;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503154541341.png" class="" title="image-20220503154541341"></li>
+<li><p>配置Nginx的请求转发规则</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location  <span class="regexp">/prod-api/</span> &#123;   </span><br><span class="line">		proxy_set_header Host <span class="variable">$http_host</span>;</span><br><span class="line">		proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">		proxy_set_header REMOTE-HOST <span class="variable">$remote_addr</span>;</span><br><span class="line">		proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">		proxy_pass http:<span class="regexp">//</span>你的ip地址:<span class="number">8080</span>/;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503154700466.png" class="" title="image-20220503154700466"></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="2-部署后端项目"><a href="#2-部署后端项目" class="headerlink" title="2.部署后端项目"></a>2.部署后端项目</h4><ol>
+<li><p>cd到项目的位置，通过 <code>java -jar &lt;项目名&gt;</code> 启动项目</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@VM</span><span class="number">-4</span><span class="number">-14</span>-centos workspace]<span class="meta"># java -jar ruoyi-admin.jar</span></span><br></pre></td></tr></table></figure></li>
+<li><p>显示启动成功</p>
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503154906534.png" class="" title="image-20220503154906534"></li>
+</ol>
+<hr>
+<h4 id="3-验证效果"><a href="#3-验证效果" class="headerlink" title="3.验证效果"></a>3.验证效果</h4><img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503155029088.png" class="" title="image-20220503155029088">
+
+<img src="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20220503155052625.png" class="" title="image-20220503155052625">
+
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>至此，项目的服务器部署流程就走完了。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43284469/article/details/115800331">https://blog.csdn.net/qq_43284469/article/details/115800331</a></p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Annoy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/">http://example.com/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SpringBoot/">SpringBoot</a></div><div class="post_share"><div class="social-share" data-image="/img/spring.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/31/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day04/"><img class="prev-cover" src="/img/spring.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【22/03/30】在线学习网站项目_day04</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/06/1-%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%8E%E6%B3%A8%E5%86%8C/"><img class="next-cover" src="/img/spring.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【22/06/06】1_秒杀项目_用户注册与登录</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/17/SpringBoot%E7%AC%94%E8%AE%B0-1/" title="【22/01/15】SpringBoot学习笔记(一)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-17</div><div class="title">【22/01/15】SpringBoot学习笔记(一)</div></div></a></div><div><a href="/2022/02/20/SpringBoot%E7%AC%94%E8%AE%B0-3/" title="【22/01/22】SpringBoot学习笔记(三)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-20</div><div class="title">【22/01/22】SpringBoot学习笔记(三)</div></div></a></div><div><a href="/2022/01/22/SpringBoot%E7%AC%94%E8%AE%B0-2/" title="【22/01/22】SpringBoot学习笔记(二)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-22</div><div class="title">【22/01/22】SpringBoot学习笔记(二)</div></div></a></div><div><a href="/2022/02/24/SpringBoot%E7%AC%94%E8%AE%B0-4/" title="【22/02/24】SpringBoot学习笔记(四)"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-24</div><div class="title">【22/02/24】SpringBoot学习笔记(四)</div></div></a></div><div><a href="/2022/03/22/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day01/" title="【22/03/22】在线学习网站项目_day01"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-22</div><div class="title">【22/03/22】在线学习网站项目_day01</div></div></a></div><div><a href="/2022/03/23/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day02/" title="【22/03/23】在线学习网站项目_day02"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">【22/03/23】在线学习网站项目_day02</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/se.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Annoy</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">62</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/annoy0514"><i class="fab fa-github"></i><span>Follow me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/annoy0514" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:843511468@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">前后端项目部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">1 环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-docker%E9%85%8D%E7%BD%AEmysql"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.docker配置mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-docker%E5%AE%89%E8%A3%85node-js"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.docker安装node.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85Nginx"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.安装Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%89%E8%A3%85Redis"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.安装Redis</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A1%B9%E7%9B%AE%E4%B8%8A%E7%BA%BF"><span class="toc-number">1.2.</span> <span class="toc-text">2 项目上线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%BC%94%E7%A4%BA%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.演示项目介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.前端项目打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%90%8E%E7%AB%AF%E9%83%A8%E5%88%86%E6%89%93%E5%8C%85"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.后端部分打包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8"><span class="toc-number">1.3.</span> <span class="toc-text">3 项目启动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%83%A8%E7%BD%B2%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.部署前端项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.部署后端项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%AA%8C%E8%AF%81%E6%95%88%E6%9E%9C"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.验证效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/07/3-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E7%94%A8%E6%88%B7%E4%B8%8B%E5%8D%95%E4%B8%8E%E7%A7%92%E6%9D%80/" title="【22/06/06】3_秒杀项目_用户下单与秒杀"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/06】3_秒杀项目_用户下单与秒杀"/></a><div class="content"><a class="title" href="/2022/06/07/3-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E7%94%A8%E6%88%B7%E4%B8%8B%E5%8D%95%E4%B8%8E%E7%A7%92%E6%9D%80/" title="【22/06/06】3_秒杀项目_用户下单与秒杀">【22/06/06】3_秒杀项目_用户下单与秒杀</a><time datetime="2022-06-07T01:42:19.000Z" title="Created 2022-06-07 09:42:19">2022-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/06/2-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85/" title="【22/06/06】2_秒杀项目_商品列表与详情"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/06】2_秒杀项目_商品列表与详情"/></a><div class="content"><a class="title" href="/2022/06/06/2-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85/" title="【22/06/06】2_秒杀项目_商品列表与详情">【22/06/06】2_秒杀项目_商品列表与详情</a><time datetime="2022-06-06T08:35:56.000Z" title="Created 2022-06-06 16:35:56">2022-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/06/1-%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%8E%E6%B3%A8%E5%86%8C/" title="【22/06/06】1_秒杀项目_用户注册与登录"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/06】1_秒杀项目_用户注册与登录"/></a><div class="content"><a class="title" href="/2022/06/06/1-%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%8E%E6%B3%A8%E5%86%8C/" title="【22/06/06】1_秒杀项目_用户注册与登录">【22/06/06】1_秒杀项目_用户注册与登录</a><time datetime="2022-06-06T02:37:59.000Z" title="Created 2022-06-06 10:37:59">2022-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="【22/05/03】SpringBoot前后端分离项目部署服务器"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/05/03】SpringBoot前后端分离项目部署服务器"/></a><div class="content"><a class="title" href="/2022/05/03/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="【22/05/03】SpringBoot前后端分离项目部署服务器">【22/05/03】SpringBoot前后端分离项目部署服务器</a><time datetime="2022-05-03T11:59:24.000Z" title="Created 2022-05-03 19:59:24">2022-05-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/31/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day04/" title="【22/03/30】在线学习网站项目_day04"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/03/30】在线学习网站项目_day04"/></a><div class="content"><a class="title" href="/2022/03/31/%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%E9%A1%B9%E7%9B%AE-day04/" title="【22/03/30】在线学习网站项目_day04">【22/03/30】在线学习网站项目_day04</a><time datetime="2022-03-31T12:40:51.000Z" title="Created 2022-03-31 20:40:51">2022-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Annoy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,welcome to Annoy 's blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
