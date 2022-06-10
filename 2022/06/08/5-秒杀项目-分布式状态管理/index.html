@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【22/06/08】5_秒杀项目_分布式状态管理 | Annoy</title><meta name="keywords" content="SpringBoot项目"><meta name="author" content="Annoy"><meta name="copyright" content="Annoy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="秒杀项目中，使用Redis缓存优化商品列表、秒杀下单的访问性能，对其中采用的分布式技术点进行记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【22&#x2F;06&#x2F;08】5_秒杀项目_分布式状态管理">
+<meta property="og:url" content="http://example.com/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="Annoy">
+<meta property="og:description" content="秒杀项目中，使用Redis缓存优化商品列表、秒杀下单的访问性能，对其中采用的分布式技术点进行记录。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/spring.png">
+<meta property="article:published_time" content="2022-06-08T13:15:13.000Z">
+<meta property="article:modified_time" content="2022-06-09T08:31:21.615Z">
+<meta property="article:author" content="Annoy">
+<meta property="article:tag" content="SpringBoot项目">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/spring.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Annoy","link":"Link: ","source":"Source: Annoy","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【22/06/08】5_秒杀项目_分布式状态管理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-09 16:31:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Annoy" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/se.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">65</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/spring.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Annoy</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【22/06/08】5_秒杀项目_分布式状态管理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-08T13:15:13.000Z" title="Created 2022-06-08 21:15:13">2022-06-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-09T08:31:21.615Z" title="Updated 2022-06-09 16:31:21">2022-06-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SpringBoot/">SpringBoot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【22/06/08】5_秒杀项目_分布式状态管理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="秒杀项目–分布式状态管理"><a href="#秒杀项目–分布式状态管理" class="headerlink" title="秒杀项目–分布式状态管理"></a>秒杀项目–分布式状态管理</h2><p>为了<strong>提高吞吐量和系统性能</strong>，需要采用<strong>分布式架构</strong>的方案，包括**Nginx,Tomcat,MySQL,并引入缓存(guava cache, redis)和消息队列(rocketMQ)**。</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608212321983.png" class="" title="image-20220608212321983">
+
+<br>
+
+<h4 id="MySQL主从分离"><a href="#MySQL主从分离" class="headerlink" title="MySQL主从分离"></a>MySQL主从分离</h4><img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220527212758420.png" class="" title="image-20220527212758420">
+
+<p><strong>主服务器</strong>和<strong>从服务器</strong>放在<strong>两个不同的物理机</strong>上。</p>
+<ol>
+<li>主服务器将事务操作记录存储在<strong>bin log日志</strong>中。</li>
+<li>从服务器通过IO线程读取binlog日志，并将数据存储在relaylog日志中，<strong>SQL线程</strong>从relaylog日志中读取并执行出<strong>主服务器的操作</strong>，从而达成主从同步的目的。</li>
+<li>从服务器生成 <strong>快照</strong>(可<strong>用于主服务器数据恢复</strong>，防止主服务器崩溃)</li>
+</ol>
+<br>
+
+<h4 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h4><img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220527215329953.png" class="" title="image-20220527215329953">
+
+<ul>
+<li><strong>资源管理器</strong>：分布式数据库集群(一堆数据库)。</li>
+<li><strong>事务管理器</strong>：实现分布式事务的协调者。</li>
+<li><strong>应用程序</strong>：业务的请求者。</li>
+</ul>
+<p><strong>处理流程：</strong></p>
+<ol>
+<li>应用程序向事务管理器<strong>请求分布式业务</strong>。</li>
+<li>事务管理器通过资源管理器<strong>开始分布式业务</strong>。</li>
+<li>应用程序向资源管理器<strong>执行SQL</strong>。</li>
+<li>应用程序执行完毕，向事务管理器发送<strong>SQL结束</strong>信息。</li>
+<li>事务管理器通知资源管理器结束分布式业务，事务管理器记录开始到结束资源管理器执行的SQL。</li>
+<li><strong>一阶段</strong>：事务管理器向资源管理器发送prepared，资源管理器检查能否提交。</li>
+<li><strong>二阶段</strong>：发送commit【无异常】/rollback【有异常】。</li>
+</ol>
+<p><strong>存在问题</strong>：</p>
+<ul>
+<li>事务管理器可能挂掉</li>
+<li>commit/rollback消息可能没有被全部接收到</li>
+</ul>
+<p><strong>解决方案</strong>：</p>
+<ul>
+<li>在应用层或事务管理层添加 <strong>重试机制</strong>，隔一段时间检查<strong>数据是否变化，事务状态是否提交</strong>。</li>
+</ul>
+<p><font color=red><strong>内部分布式事务</strong></font></p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220527222205879.png" class="" title="image-20220527222205879">
+
+<ol>
+<li>主服务器对redolog进行<strong>prepare</strong>的写入。</li>
+<li>MySQL对bin log进行写入。</li>
+<li>从IO线程写入relay log。</li>
+<li>对redo log进行commit前<strong>检查prepare标识</strong>，<u>防止出现<strong>redo log</strong>与<strong>bin log</strong>不同步问题</u>。</li>
+</ol>
+<br>
+
+<h4 id="Redis缓存"><a href="#Redis缓存" class="headerlink" title="Redis缓存"></a>Redis缓存</h4><p><strong>实现原理</strong></p>
+<p>Redis的持久化机制通过 <strong>把内存中的数据同步到硬盘文件中</strong> 保证数据的持久化。</p>
+<p>当Redis重启后再将硬盘文件重新加载到内存中，达到 <strong>恢复数据</strong> 的目的。</p>
+<br>
+
+<p><strong>实现过程</strong></p>
+<p><strong>持久化过程</strong>: 单独fork()一个子进程，将当前父进程的数据库数据复制到子进程的内存中，再由子进程写入到临时文件中去。</p>
+<p>再用临时文件替换上次的快照文件，子进程退出，内存释放。</p>
+<br>
+
+<p><strong>持久化策略</strong></p>
+<ol>
+<li><p><strong>Redis持久化机制</strong></p>
+<ol>
+<li><p><strong>RDB</strong>(Redis Database): 在指定的时间间隔对数据进行快照存储。</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220530102052774.png" class="" title="image-20220530102052774">
+
+<p>【黄色区域：额外会执行的事情】</p>
+<blockquote>
+<p>RDB的原理？</p>
+</blockquote>
+<p>fork和cow。</p>
+<ul>
+<li><strong>fork</strong>：是指redis通过创建子进程来进行RDB操作。</li>
+<li><strong>cow</strong>：是指copy on write，子进程创建后，父子进程共享数据段，父进程继续提供读写服务，写脏的页面数据会逐渐和子进程分离开来。</li>
+</ul>
+<br></li>
+<li><p><strong>AOF</strong>(Append Only File): 每一个收到的写命令都通过write函数追加到文件中。当Redis重启，通过重新执行文件中保存的命令，在内存中重构整个数据库的内容。</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220530102111583.png" class="" title="image-20220530102111583"></li>
+</ol>
+<p>​    【黄色区域：额外会执行的事情】</p>
+<ul>
+<li><p><strong>数据恢复</strong> ： 在Redis进行重启时，会使用<strong>RDB</strong>持久化文件重新构建内存，再使用<strong>AOF</strong>重新执行近期的操作指令来实现完成恢复重启前的状态。</p>
+</li>
+<li><p><strong>AOF持久化开启且存在AOF文件时，优先加载AOF文件</strong>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="整合Redis"><a href="#整合Redis" class="headerlink" title="整合Redis"></a>整合Redis</h3><ol>
+<li><p>后端项目中引入 <code>Redis</code> 依赖。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>properties文件中设置 <code>Redis</code> 相关参数。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># redis</span></span><br><span class="line"><span class="meta">spring.redis.database</span>=<span class="string">0</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">127.0.0.1</span></span><br><span class="line"><span class="meta">spring.redis.port</span>=<span class="string">6694</span></span><br><span class="line"><span class="meta">spring.redis.password</span>=<span class="string">你的密码</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>自定义持久化的方式</strong></p>
+<p>默认的持久化方式是以二进制格式写入到redis中的，这不方便开发人员开发过程中进行阅读，所以我们要自定义持久化的方式。</p>
+<ul>
+<li><p>默认持久化方式</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608213549404.png" class="" title="image-20220608213549404"></li>
+<li><p><strong>自定义持久化方式</strong></p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608213710716.png" class="" title="image-20220608213710716">
+
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608213945810.png" class="" title="image-20220608213945810"></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="使用Redis进行用户登录状态管理"><a href="#使用Redis进行用户登录状态管理" class="headerlink" title="使用Redis进行用户登录状态管理"></a>使用Redis进行用户登录状态管理</h3><p><strong>存在问题</strong>：之前的注册和登录环节使用的是 <code>Session</code> 进行状态管理，单机架构下 <code>Session</code> 没有问题，但是在分布式系统中，一些客户端使用的不是 <code>http协议</code> ，没有 <code>Session域</code> 所以无法进行跨域，这样使用Session进行登录状态的维护是行不通的。</p>
+<p><strong>解决方案</strong>: 我们采用<code>Redis</code> 来实现 <code>单点登录</code>，把登录成功的用户存一个 <code>token字符串 </code>在 <code>Redis</code> 中，其他站点的应用通过访问 <code>Redis</code> 查询是否存在这个用户的 <code>token</code> 来判断用户是否登录。</p>
+<h4 id="注册模块的优化"><a href="#注册模块的优化" class="headerlink" title="注册模块的优化"></a>注册模块的优化</h4><p>之前的注册模块是将验证码存到session中这样假设同时有上百千万的人高并发情况下使用session读性能会很差。</p>
+<p>我们可以使用 <code>redis</code> 缓存验证码,并且设置过期时间，这样的话既提高访问效率又节约了session内存空间。</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608220153315.png" class="" title="image-20220608220153315">
+
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608220310974.png" class="" title="image-20220608220310974">
+
+<h4 id="登录状态管理优化"><a href="#登录状态管理优化" class="headerlink" title="登录状态管理优化"></a>登录状态管理优化</h4><p>用户登录状态的维护，随机生成UUID作为键，user对象作为值，有效期设置为1天。</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608221330926.png" class="" title="image-20220608221330926">
+
+<p><strong>登录拦截器</strong></p>
+<p>判断Redis中是否有用户的token，有就表示已经登陆，没有的话就需要登录，才可以进行后续下单操作。</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608222025401.png" class="" title="image-20220608222025401">
+
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220608222256529.png" class="" title="image-20220608222256529">
+
+<hr>
+<h3 id="使用guava-Redis缓存商品"><a href="#使用guava-Redis缓存商品" class="headerlink" title="使用guava+Redis缓存商品"></a>使用guava+Redis缓存商品</h3><p>商品缓存使用到了 <font color=red>二级缓存</font> ，本地缓存使用 <code>guava</code>，服务器缓存使用 <code>Redis</code>。</p>
+<ol>
+<li><p>导入guava依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.guava<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>guava<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>27.0.1-jre<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>商品详情接口</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220609102158620.png" class="" title="image-20220609102158620">
+
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220609102440076.png" class="" title="image-20220609102440076">
+
+<p>由service代码可知、分为了三步。</p>
+<ol>
+<li>先去guava本地缓存中去看是否有数据，有直接从缓存中取数据，然后直接返回。没有就下一步。</li>
+<li>假如guava本地缓存中没有数据就去redis中找看有没有，有就直接取到存带guava中然后再返回，没有就下一步。</li>
+<li>假如本地和redis一二级缓存都没有数据、才去数据库中查查到了就放到本地guava缓存和redis缓存中方便下次取，提高效率。最后返回。</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="使用Redis缓存用户"><a href="#使用Redis缓存用户" class="headerlink" title="使用Redis缓存用户"></a>使用Redis缓存用户</h3><p>本地缓存中一般存的是热点较高的数据，而用户数据访问的频率不是特别高，没有必要使用本地缓存。所以使用 <font color=red>一级缓存</font> 缓存用户信息，直接使用 <code>Redis缓存</code>。</p>
+<ol>
+<li><p>在 <code>PromotionServiceImpl</code> 中生成活动令牌时，调用 <code>UserService</code> 中的 <code>findUserFromCache</code> 方法。</p>
+<img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220609104326152.png" class="" title="image-20220609104326152"></li>
+<li><p> <code>UserService</code> 中的 <code>findUserFromCache</code> 方法。</p>
+</li>
+</ol>
+   <img src="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/image-20220609151412190.png" class="" title="image-20220609151412190">
+
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本节主要使用Redis+token对用户登录状态的维护进行了一个优化，熟悉处理流程。</p>
+<p>使用Redis做缓存，对经常访问并且不经常改变的数据进行查询，可以大大提高网页的访问效率。</p>
+<ul>
+<li>看Redis相关八股文。如Redis的持久化有哪些种类。</li>
+<li>分布式缓存的八股文。</li>
+</ul>
+<p>本节参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43919497/article/details/119646114">(秒杀项目) 4.6 分布式状态管理</a></p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Annoy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/">http://example.com/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SpringBoot%E9%A1%B9%E7%9B%AE/">SpringBoot项目</a></div><div class="post_share"><div class="social-share" data-image="/img/spring.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/07/4-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%8E%8B%E6%B5%8B/"><img class="prev-cover" src="/img/spring.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【22/06/07】4_秒杀项目_项目部署与压测</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/09/6-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%BC%82%E6%AD%A5%E5%8C%96%E6%89%A3%E5%87%8F%E5%BA%93%E5%AD%98/"><img class="next-cover" src="/img/spring.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【22/06/08】6_秒杀项目_异步化扣减库存[重点]</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/06/06/1-%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%8E%E6%B3%A8%E5%86%8C/" title="【22/06/06】1_秒杀项目_用户注册与登录"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-06</div><div class="title">【22/06/06】1_秒杀项目_用户注册与登录</div></div></a></div><div><a href="/2022/06/06/2-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85/" title="【22/06/06】2_秒杀项目_商品列表与详情"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-06</div><div class="title">【22/06/06】2_秒杀项目_商品列表与详情</div></div></a></div><div><a href="/2022/06/07/3-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E7%94%A8%E6%88%B7%E4%B8%8B%E5%8D%95%E4%B8%8E%E7%A7%92%E6%9D%80/" title="【22/06/07】3_秒杀项目_用户下单与秒杀"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-07</div><div class="title">【22/06/07】3_秒杀项目_用户下单与秒杀</div></div></a></div><div><a href="/2022/06/07/4-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%8E%8B%E6%B5%8B/" title="【22/06/07】4_秒杀项目_项目部署与压测"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-07</div><div class="title">【22/06/07】4_秒杀项目_项目部署与压测</div></div></a></div><div><a href="/2022/06/09/6-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%BC%82%E6%AD%A5%E5%8C%96%E6%89%A3%E5%87%8F%E5%BA%93%E5%AD%98/" title="【22/06/08】6_秒杀项目_异步化扣减库存[重点]"><img class="cover" src="/img/spring.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-09</div><div class="title">【22/06/08】6_秒杀项目_异步化扣减库存[重点]</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/se.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Annoy</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">65</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/annoy0514"><i class="fab fa-github"></i><span>Follow me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/annoy0514" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:843511468@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE%E2%80%93%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">秒杀项目–分布式状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL%E4%B8%BB%E4%BB%8E%E5%88%86%E7%A6%BB"><span class="toc-number">1.0.1.</span> <span class="toc-text">MySQL主从分离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.0.2.</span> <span class="toc-text">分布式事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis%E7%BC%93%E5%AD%98"><span class="toc-number">1.0.3.</span> <span class="toc-text">Redis缓存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88Redis"><span class="toc-number">1.1.</span> <span class="toc-text">整合Redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">使用Redis进行用户登录状态管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">注册模块的优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">登录状态管理优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8guava-Redis%E7%BC%93%E5%AD%98%E5%95%86%E5%93%81"><span class="toc-number">1.3.</span> <span class="toc-text">使用guava+Redis缓存商品</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Redis%E7%BC%93%E5%AD%98%E7%94%A8%E6%88%B7"><span class="toc-number">1.4.</span> <span class="toc-text">使用Redis缓存用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/09/6-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%BC%82%E6%AD%A5%E5%8C%96%E6%89%A3%E5%87%8F%E5%BA%93%E5%AD%98/" title="【22/06/08】6_秒杀项目_异步化扣减库存[重点]"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/08】6_秒杀项目_异步化扣减库存[重点]"/></a><div class="content"><a class="title" href="/2022/06/09/6-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%BC%82%E6%AD%A5%E5%8C%96%E6%89%A3%E5%87%8F%E5%BA%93%E5%AD%98/" title="【22/06/08】6_秒杀项目_异步化扣减库存[重点]">【22/06/08】6_秒杀项目_异步化扣减库存[重点]</a><time datetime="2022-06-09T09:02:20.000Z" title="Created 2022-06-09 17:02:20">2022-06-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/" title="【22/06/08】5_秒杀项目_分布式状态管理"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/08】5_秒杀项目_分布式状态管理"/></a><div class="content"><a class="title" href="/2022/06/08/5-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/" title="【22/06/08】5_秒杀项目_分布式状态管理">【22/06/08】5_秒杀项目_分布式状态管理</a><time datetime="2022-06-08T13:15:13.000Z" title="Created 2022-06-08 21:15:13">2022-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/07/4-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%8E%8B%E6%B5%8B/" title="【22/06/07】4_秒杀项目_项目部署与压测"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/07】4_秒杀项目_项目部署与压测"/></a><div class="content"><a class="title" href="/2022/06/07/4-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%8E%8B%E6%B5%8B/" title="【22/06/07】4_秒杀项目_项目部署与压测">【22/06/07】4_秒杀项目_项目部署与压测</a><time datetime="2022-06-07T09:35:06.000Z" title="Created 2022-06-07 17:35:06">2022-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/07/3-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E7%94%A8%E6%88%B7%E4%B8%8B%E5%8D%95%E4%B8%8E%E7%A7%92%E6%9D%80/" title="【22/06/07】3_秒杀项目_用户下单与秒杀"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/07】3_秒杀项目_用户下单与秒杀"/></a><div class="content"><a class="title" href="/2022/06/07/3-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E7%94%A8%E6%88%B7%E4%B8%8B%E5%8D%95%E4%B8%8E%E7%A7%92%E6%9D%80/" title="【22/06/07】3_秒杀项目_用户下单与秒杀">【22/06/07】3_秒杀项目_用户下单与秒杀</a><time datetime="2022-06-07T01:42:19.000Z" title="Created 2022-06-07 09:42:19">2022-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/06/2-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85/" title="【22/06/06】2_秒杀项目_商品列表与详情"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/06】2_秒杀项目_商品列表与详情"/></a><div class="content"><a class="title" href="/2022/06/06/2-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85/" title="【22/06/06】2_秒杀项目_商品列表与详情">【22/06/06】2_秒杀项目_商品列表与详情</a><time datetime="2022-06-06T08:35:56.000Z" title="Created 2022-06-06 16:35:56">2022-06-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Annoy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,welcome to Annoy 's blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
