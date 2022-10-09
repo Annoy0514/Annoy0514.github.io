@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Kafka学习记录 | Annoy</title><meta name="keywords" content="Kafka"><meta name="author" content="Annoy"><meta name="copyright" content="Annoy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录学习Kafka过程中遇到的知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka学习记录">
+<meta property="og:url" content="http://example.com/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Annoy">
+<meta property="og:description" content="记录学习Kafka过程中遇到的知识点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/kafka.jpg">
+<meta property="article:published_time" content="2022-07-09T01:48:44.000Z">
+<meta property="article:modified_time" content="2022-10-09T01:17:00.088Z">
+<meta property="article:author" content="Annoy">
+<meta property="article:tag" content="Kafka">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/kafka.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Kafka学习记录',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-09 09:17:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Annoy" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/se.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/kafka.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Annoy</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Kafka学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-09T01:48:44.000Z" title="发表于 2022-07-09 09:48:44">2022-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-09T01:17:00.088Z" title="更新于 2022-10-09 09:17:00">2022-10-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Kafka/">Kafka</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Kafka学习记录"><a href="#Kafka学习记录" class="headerlink" title="Kafka学习记录"></a>Kafka学习记录</h2><h3 id="什么是Kafka"><a href="#什么是Kafka" class="headerlink" title="什么是Kafka?"></a>什么是Kafka?</h3><p><code>Kafka</code> 是一个分布式流式平台，它有三个关键能力:</p>
+<ol>
+<li>订阅发布记录流，它类似于企业中的<code>消息队列</code> 或 <code>企业消息传递系统</code>。</li>
+<li>以容错的方式存储记录流。</li>
+<li>实时记录流。</li>
+</ol>
+<p><strong>Kafka基本概念</strong></p>
+<ol>
+<li><p><strong>Topic</strong>[主题]</p>
+<p>Topic被称为Kafka的主题，使用一个类别属性来划分消息的所属类，划分消息的这个类称为topic。相当于是一个 <strong>分配标签</strong>，类比为数据库的表，或是文件系统中的一个文件夹。</p>
+</li>
+<li><p><strong>Partition</strong>[分区]</p>
+<p>Partition是Kafka中的分区。Topic中的消息被分割成一个或者多个Partition，它是一个物理概念，对应到系统中就是一个或多个目录，一个分区就是一个 <code>提交日志</code>。</p>
+<p>消息是以 <strong>追加</strong> 的形式写入到分区中，先后以 <strong>顺序的方式</strong> 进行读取。</p>
+<img src="/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20220709112047057.png" class="" title="image-20220709112047057">
+
+<blockquote>
+<p>注意：</p>
+<p>(1) 一个主题包含无数个分区，因此不能保证消息在整个topic中有序，但是在单个Partition中可以保证有序。</p>
+<p>(2) 消息的写入是被迫追加到每个分区的尾部。</p>
+<p>(3) Kafka通过分区来实现数据冗余和伸缩性。</p>
+</blockquote>
+<p><strong>分区[Partition]可以分布在不同的服务器上，一个主题[Topic]可以跨越多个服务器，以提供比单个服务器更强大的性能。</strong></p>
+</li>
+<li><p><strong>Segment</strong>[段]</p>
+<p>分区[Partition]进一步细分可以分为若干个段[Segment]，每个段文件的大小相同。</p>
+</li>
+<li><p><strong>Broker</strong>[Kafka服务器]</p>
+<p>Kafka集群包含一个或多个 <strong>服务器</strong>，每个Kafka中的服务器被称为Broker。</p>
+<p>Broker <strong>接受来自生产者的消息</strong>，为消息设置偏移量，并提交消息到磁盘保存。</p>
+<p>Broker <strong>为消费者提供服务</strong>，对请求分区消息做出响应，返回已经提交到磁盘上的消息。</p>
+<p><strong>Kafka集群中的Broker</strong>：</p>
+<img src="/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20220709111926066.png" class="" title="image-20220709111926066">
+
+<p>broker 是集群的组成部分，每个集群中都会有一个 broker 同时充当了 <code>集群控制器(Leader)</code> 的角色，它是由集群中的活跃成员选举出来的。</p>
+<p>每个集群中的成员都有可能充当 Leader，Leader 负责管理工作，包括将分区分配给 broker 和监控 broker。</p>
+<p>集群中，一个分区从属于一个 Leader，但是一个分区可以分配给多个 broker（非Leader），这时候会发生 <strong>分区复制</strong>。这种复制的机制为分区提供了 <strong>消息冗余</strong>，如果一个 broker 失效，那么其他活跃用户会重新选举一个 Leader 接管。</p>
+</li>
+<li><p>Producer[消息生产者]</p>
+<p>消息的发布者，其会将某topic的消息发布到对应的Partition中。</p>
+<p>生产者在默认情况下把消息均匀分布在主题的所有分区上，并不关心特定的消息被写到哪个分区。</p>
+</li>
+<li><p>Consumer[消息消费者]</p>
+<p>消息的消费者，一个消费者可以消费多个topic的消息，对某一个Topic的消息，其只会消费 <strong>同一个Partition中的消息</strong>。</p>
+<img src="/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20220709113200237.png" class="" title="image-20220709113200237"></li>
+</ol>
+<hr>
+<h3 id="Kafka的应用场景"><a href="#Kafka的应用场景" class="headerlink" title="Kafka的应用场景"></a>Kafka的应用场景</h3><ol>
+<li><p>消息系统</p>
+<p>Kafka作为消息系统，有 <strong>三个基本组件</strong>。</p>
+<img src="/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/1460000038974248" class="" title="file">
+
+<ul>
+<li><strong>Producer</strong>: 发布消息的客户端。</li>
+<li><strong>Broker</strong>: 一个从生产者接受并存储消息的客户端。</li>
+<li><strong>Consumer</strong>: 消息的消费者，从Broker中读取消息。</li>
+</ul>
+<p><strong>消息系统的作用：</strong></p>
+<p>使用消息传递系统，系统会变得更加简单和整洁。</p>
+<img src="/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20220709112105194.png" class="" title="image-20220709112105194"></li>
+<li><p>存储系统</p>
+</li>
+<li><p>流处理器：Kafka建立流处理管道，可靠性的在系统或应用之间获取数据。建立流式应用传输和响应数据。</p>
+</li>
+</ol>
+<hr>
+<h3 id="Kafka的运行机制"><a href="#Kafka的运行机制" class="headerlink" title="Kafka的运行机制"></a>Kafka的运行机制</h3><ul>
+<li>Kafka运行在一个或是多个数据中心的服务器上作为集群运行。</li>
+<li>Kafka集群存储消息记录的目录被称为 <code>topics</code>。</li>
+<li>每条消息记录包含 <strong>三个要素</strong>：<strong>键(Key)、值(Value)、时间戳(Timestamp)。</strong></li>
+</ul>
+<hr>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Kafka/">Kafka</a></div><div class="post_share"><div class="social-share" data-image="/img/kafka.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/06/27/Scala%E5%AD%A6%E4%B9%A0/"><img class="next-cover" src="/img/scala.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Scala学习笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/se.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Annoy</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/annoy0514"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">Kafka学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFKafka"><span class="toc-number">1.1.</span> <span class="toc-text">什么是Kafka?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">Kafka的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.</span> <span class="toc-text">Kafka的运行机制</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="Kafka学习记录"><img src="/img/kafka.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kafka学习记录"/></a><div class="content"><a class="title" href="/2022/07/09/Kafka%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="Kafka学习记录">Kafka学习记录</a><time datetime="2022-07-09T01:48:44.000Z" title="发表于 2022-07-09 09:48:44">2022-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/27/Scala%E5%AD%A6%E4%B9%A0/" title="Scala学习笔记"><img src="/img/scala.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Scala学习笔记"/></a><div class="content"><a class="title" href="/2022/06/27/Scala%E5%AD%A6%E4%B9%A0/" title="Scala学习笔记">Scala学习笔记</a><time datetime="2022-06-27T07:03:30.000Z" title="发表于 2022-06-27 15:03:30">2022-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/14/MySQL%E7%AC%94%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/" title="MySQL笔试题记录"><img src="/img/mysql.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL笔试题记录"/></a><div class="content"><a class="title" href="/2022/06/14/MySQL%E7%AC%94%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/" title="MySQL笔试题记录">MySQL笔试题记录</a><time datetime="2022-06-14T02:02:54.000Z" title="发表于 2022-06-14 10:02:54">2022-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/10/7-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%89%8A%E5%B3%B0%E9%99%90%E6%B5%81%E4%B8%8E%E9%98%B2%E5%88%B7/" title="【22/06/09】7_秒杀项目_削峰限流与防刷[重点]"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/09】7_秒杀项目_削峰限流与防刷[重点]"/></a><div class="content"><a class="title" href="/2022/06/10/7-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%89%8A%E5%B3%B0%E9%99%90%E6%B5%81%E4%B8%8E%E9%98%B2%E5%88%B7/" title="【22/06/09】7_秒杀项目_削峰限流与防刷[重点]">【22/06/09】7_秒杀项目_削峰限流与防刷[重点]</a><time datetime="2022-06-10T02:49:46.000Z" title="发表于 2022-06-10 10:49:46">2022-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/09/6-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%BC%82%E6%AD%A5%E5%8C%96%E6%89%A3%E5%87%8F%E5%BA%93%E5%AD%98/" title="【22/06/09】6_秒杀项目_异步化扣减库存[重点]"><img src="/img/spring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【22/06/09】6_秒杀项目_异步化扣减库存[重点]"/></a><div class="content"><a class="title" href="/2022/06/09/6-%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-%E5%BC%82%E6%AD%A5%E5%8C%96%E6%89%A3%E5%87%8F%E5%BA%93%E5%AD%98/" title="【22/06/09】6_秒杀项目_异步化扣减库存[重点]">【22/06/09】6_秒杀项目_异步化扣减库存[重点]</a><time datetime="2022-06-09T09:02:20.000Z" title="发表于 2022-06-09 17:02:20">2022-06-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Annoy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div></div></body></html>
